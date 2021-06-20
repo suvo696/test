@@ -20,7 +20,7 @@ def home():
 
 
     content = driver.page_source
-    soup = BeautifulSoup(content, features = "lxml")
+    soup = BeautifulSoup(content, features = "html.parser")
     v=(soup.findAll('td',class_='surveillancetext'))
     l=[]
     for i in v:
