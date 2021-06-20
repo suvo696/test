@@ -6,7 +6,7 @@ app=Flask(__name__)
 @app.route("/")
 def home():
     url = 'https://marketsmithindia.com/mstool/eval/RELIANCE/evaluation.jsp#/'
-    driver = webdriver.Chrome("chromedriver_win32/chromedriver.exe")
+    driver = webdriver.Chrome(executable_path="chromedriver_win32/chromedriver.exe")
     driver.get(url) 
 
 
