@@ -40,7 +40,7 @@
                 <!-- Masthead Avatar Image-->
                 <img class="masthead-avatar mb-5" src="https://startbootstrap.github.io/startbootstrap-freelancer/assets/img/avataaars.svg" alt="" />
                 <!-- Masthead Heading-->
-                <h1 class="masthead-heading text-uppercase mb-0">Python Developer</h1>
+                <h1 class="masthead-heading text-uppercase mb-0">Surveillance List Scrapped</h1>
                 <!-- Icon Divider-->
                 <div class="divider-custom divider-light">
                     <div class="divider-custom-line"></div>
@@ -48,7 +48,11 @@
                     <div class="divider-custom-line"></div>
                 </div>
                 <!-- Masthead Subheading-->
-                <p class="masthead-subheading font-weight-light mb-0">Free Hosting on Zeet</p>
+                {% for f in l %}
+                    <ul>
+                        <li style="display: block;">{{ f }}</li>
+                    </ul>
+                {% endfor %}
             </div>
         </header>
          <!-- Bootstrap core JS-->
