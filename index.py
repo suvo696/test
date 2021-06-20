@@ -1,33 +1,23 @@
 from flask import Flask,render_template
 from bs4 import BeautifulSoup
 from selenium import webdriver
+from webdriver_manager.chrome import ChromeDriverManager
+
 app=Flask(__name__)
 
 @app.route("/")
 def home():
-    url = 'https://marketsmithindia.com/mstool/eval/RELIANCE/evaluation.jsp#/'
-
-    GOOGLE_CHROME_PATH = '/app/.apt/usr/bin/google_chrome'
-    CHROMEDRIVER_PATH = '/app/.chromedriver/bin/chromedriver'
-    chrome_options = webdriver.ChromeOptions()
-    chrome_options.add_argument('--disable-gpu')
-    chrome_options.add_argument('--no-sandbox')
-    chrome_options.binary_location = GOOGLE_CHROME_PATH
-    driver = webdriver.Chrome(CHROMEDRIVER_PATH)
     
-    driver.get(url) 
-
-
-    content = driver.page_source
-    soup = BeautifulSoup(content, features = "lxml")
-    v=(soup.findAll('td',class_='surveillancetext'))
-    l=[]
-    for i in v:
-        try:
-            l.append(i.text)
-        except:
-            l.append(i.findAll('a').text)
-    driver.close()
+    gChromeOptions = webdriver.ChromeOptions()
+    gChromeOptions.add_argument("window-size=1920x1480")
+    gChromeOptions.add_argument("disable-dev-shm-usage")
+    gDriver = webdriver.Chrome(
+        chrome_options=gChromeOptions, executable_path=ChromeDriverManager().install()
+    )
+    gDriver.get("https://www.python.org/")
+    
+    gDriver.save_screenshot("my_screenshot.png")
+    gDriver.close()
 
     return render_template('index.html',l=l)
 
